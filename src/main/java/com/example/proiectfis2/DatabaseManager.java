@@ -1,105 +1,91 @@
 package com.example.proiectfis2;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-class DatabaseManager {
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DatabaseManager {
+    private List<Customer> customers;
     private List<Employee> employees;
     private List<Product> products;
-    private List<Customer> customers;
     private List<Order> orders;
     private List<Promotion> promotions;
-    private List<String> services;
-    private Map<String, List<Product>> catalog; // Catalogul categoriilor de produse
 
     public DatabaseManager() {
-        // Inițializare listele
-        employees = new ArrayList<>();
-        products = new ArrayList<>();
-        customers = new ArrayList<>();
-        orders = new ArrayList<>();
-        promotions = new ArrayList<>();
-        services = new ArrayList<>();
-        catalog = new HashMap<>();
-        // Adăugare servicii inițiale
-        services.add("cumpărarea de sisteme electronice pre-asamblate");
-        services.add("construirea unor desktop pc din piese puse la dispoziție");
-        services.add("service");
-        // Adăugare categorii de produse în catalog
-        catalog.put(Category.DESKTOP_PC.toString(), new ArrayList<>());
-        catalog.put(Category.LAPTOP.toString(), new ArrayList<>());
-        catalog.put(Category.IMPRIMANTE.toString(), new ArrayList<>());
-        catalog.put(Category.PERIFERICE.toString(), new ArrayList<>());
-
-
+        this.customers = loadCustomers();
+        this.employees = loadEmployees();
+        this.products = loadProducts();
+        this.orders = loadOrders();
+        this.promotions = loadPromotions();
     }
 
-    // Metode pentru gestionarea angajaților
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void viewEmployees() {
-        for (Employee employee : employees) {
-            System.out.println(employee.getName() + " - " + employee.getRole());
+    private List<Customer> loadCustomers() {
+        try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/customers.json"))) {
+            Type customerListType = new TypeToken<ArrayList<Customer>>(){}.getType();
+            return new Gson().fromJson(reader, customerListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 
-    // Metode pentru gestionarea produselor
-    public void addProduct(Product product, Employee employee) {
-        if (employee.getRole().equals("senior")) {
-            products.add(product);
-            catalog.get(product.getCategory().toString()).add(product); // Convertim enum-ul în șir
-        } else {
-            System.out.println("Doar angajații seniori pot adăuga produse noi.");
+    private List<Employee> loadEmployees() {
+        try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/employees.json"))) {
+            Type employeeListType = new TypeToken<ArrayList<Employee>>(){}.getType();
+            return new Gson().fromJson(reader, employeeListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
-    // Metoda pentru obținerea unui produs după nume
-    public Product getProductByName(String name) {
-        for (Product product : products) {
-            if (product.getName().equals(name)) {
-                return product;
-            }
+
+    private List<Product> loadProducts() {
+        try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/products.json"))) {
+            Type productListType = new TypeToken<ArrayList<Product>>(){}.getType();
+            return new Gson().fromJson(reader, productListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        return null; // Returnează null dacă produsul nu este găsit
     }
 
-
-    public List<Product> getProducts() {
-        return products;
+    private List<Order> loadOrders() {
+        try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/orders.json"))) {
+            Type orderListType = new TypeToken<ArrayList<Order>>(){}.getType();
+            return new Gson().fromJson(reader, orderListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
-    public Map<String, List<Product>> getCatalog() {
-        return catalog;
+    private List<Promotion> loadPromotions() {
+        try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/promotions.json"))) {
+            Type promotionListType = new TypeToken<ArrayList<Promotion>>(){}.getType();
+            return new Gson().fromJson(reader, promotionListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
-    // Metode pentru gestionarea clienților
+    // Gestionarea clienților
     public void addCustomer(Customer customer) {
         customers.add(customer);
     }
 
-    public Customer getCustomerByUsername(String username) {
+    public Customer getCustomer(String username) {
         for (Customer customer : customers) {
             if (customer.getUsername().equals(username)) {
                 return customer;
             }
         }
         return null;
-    }
-
-    public boolean doesCustomerExist(String username) {
-        for (Customer customer : customers) {
-            if (customer.getUsername().equals(username)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public boolean authenticateCustomer(String username, String password) {
@@ -111,74 +97,100 @@ class DatabaseManager {
         return false;
     }
 
-    // Metode pentru gestionarea comenzilor
-    public void placeOrder(Order order) {
-        orders.add(order);
+    // Gestionarea angajaților
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
     }
 
-    public List<Order> getOrdersByUsername(String username) {
-        List<Order> customerOrders = new ArrayList<>();
-        for (Order order : orders) {
-            if (order.getCustomer().getUsername().equals(username)) {
-                customerOrders.add(order);
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public boolean authenticateEmployee(String username, String password) {
+        for (Employee employee : employees) {
+            if (employee.getUsername().equals(username) && employee.getPassword().equals(password)) {
+                return true;
             }
         }
-        return customerOrders;
+        return false;
     }
+
+    public Employee getEmployee(String username) {
+        for (Employee employee : employees) {
+            if (employee.getUsername().equals(username)) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    // Gestionarea produselor
+    public void addProduct(Product product, Employee employee) {
+        if (employee != null && employee.getRole().equals("senior")) {
+            products.add(product);
+            saveProducts();
+        } else {
+            System.out.println("Doar angajații seniori pot adăuga produse.");
+        }
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    // Gestionarea comenzilor
+    public void placeOrder(Order order) {
+        orders.add(order);
+        saveOrders();
+    }
+
     public List<Order> getOrders() {
         return orders;
     }
 
-    // Metode pentru gestionarea serviciilor
-    public List<String> getServices() {
-        return services;
-    }
-
-    public void addService(String service) {
-        services.add(service);
-    }
-
-    // Metode pentru gestionarea promoțiilor
+    // Gestionarea promotiilor
     public void addPromotion(Promotion promotion, Employee employee) {
-        if (employee.getRole().equals("senior")) {
+        if (employee != null && employee.getRole().equals("manager")) {
             promotions.add(promotion);
             for (Product product : promotion.getProducts()) {
-                products.add(product); // Adăugăm produsele incluse în promoție în lista de produse
+                if (!products.contains(product)) {
+                    products.add(product);
+                }
             }
+            saveProducts();
         } else {
-            System.out.println("Doar angajații seniori pot adăuga promoții noi.");
+            System.out.println("Doar managerii pot adăuga promoții noi.");
         }
     }
 
     public void removePromotion(Promotion promotion, Employee employee) {
-        if (employee.getRole().equals("senior")) {
+        if (employee != null && employee.getRole().equals("manager")) {
             promotions.remove(promotion);
-            for (Product product : promotion.getProducts()) {
-                products.remove(product); // Ștergem produsele incluse în promoție din lista de produse
-            }
+            saveProducts();
         } else {
-            System.out.println("Doar angajații seniori pot șterge promoții.");
+            System.out.println("Doar managerii pot șterge promoții.");
         }
     }
+    public double getDiscountForProduct(Product product) {
+        for (Promotion promotion : promotions) {
+            if (promotion.getProducts().contains(product)) {
+                return promotion.getDiscountPercent();
+            }
+        }
+        return 0;
+    }
+
 
     public List<Promotion> getPromotions() {
         return promotions;
     }
 
-    // Metoda pentru calcularea prețului total al unei comenzi
-    public double calculateTotalPrice(Order order) {
-        double totalPrice = 0.0;
-        for (Product product : order.getProducts()) {
-            totalPrice += product.getPrice();
-        }
-        // Adăugăm taxa suplimentară pentru piesele pre-asamblate
-        if (order.getType() == Type.CUMPARARE) { // Verificăm tipul comenzii folosind enum-ul
-            for (Product product : order.getProducts()) {
-                if (product.getCategory() == Category.DESKTOP_PC || product.getCategory() == Category.LAPTOP) {
-                    totalPrice += 100.0; // Taxa suplimentară pentru piese pre-asamblate
-                }
-            }
-        }
-        return totalPrice;
+    // Metode pentru salvarea și încărcarea datelor (simulare)
+    private void saveOrders() {
+        // Salvarea comenzilor
+    }
+
+    private void saveProducts() {
+        // Salvarea produselor
     }
 }

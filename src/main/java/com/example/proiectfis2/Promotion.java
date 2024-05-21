@@ -2,11 +2,10 @@ package com.example.proiectfis2;
 
 import java.util.List;
 
-
 class Promotion {
     private String name;
-    private List<Product> products; // Produsele incluse în promoție
-    private double discountPercent; // Procentul de reducere
+    private List<Product> products;
+    private double discountPercent;
 
     public Promotion(String name, List<Product> products, double discountPercent) {
         this.name = name;
@@ -24,5 +23,19 @@ class Promotion {
 
     public double getDiscountPercent() {
         return discountPercent;
+    }
+
+    public double calculateDiscount() {
+        double totalValue = products.stream().mapToDouble(Product::getPrice).sum();
+        return totalValue * (discountPercent / 100);
+    }
+
+    @Override
+    public String toString() {
+        return "Promotion{" +
+                "name='" + name + '\'' +
+                ", products=" + products +
+                ", discountPercent=" + discountPercent +
+                '}';
     }
 }
