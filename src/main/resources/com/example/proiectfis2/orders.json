@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "customer": {
+      "username": "customer1",
+      "password": "password1",
+      "email": "customer1@example.com"
+    },
+    "products": [
+      {
+        "name": "Desktop PC",
+        "category": "DESKTOP_PC",
+        "price": 1200.0,
+        "description": "High-performance desktop PC",
+        "rating": 5
+      }
+    ],
+    "type": "CUMPARARE",
+    "status": "New"
+  }
+]

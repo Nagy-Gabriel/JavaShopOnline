@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class DatabaseManager {
     private List<Customer> customers;
@@ -15,7 +18,13 @@ public class DatabaseManager {
     private List<Product> products;
     private List<Order> orders;
     private List<Promotion> promotions;
+    private static final String CUSTOMERS_FILE = "src/main/resources/com/example/proiectfis2/customers.json";
+    private static final String EMPLOYEES_FILE = "src/main/resources/com/example/proiectfis2/employees.json";
+    private static final String PRODUCTS_FILE = "src/main/resources/com/example/proiectfis2/products.json";
+    private static final String ORDERS_FILE = "src/main/resources/com/example/proiectfis2/orders.json";
+    private static final String PROMOTIONS_FILE = "src/main/resources/com/example/proiectfis2/promotions.json";
 
+    private Gson gson = new Gson();
     public DatabaseManager() {
         this.customers = loadCustomers();
         this.employees = loadEmployees();
@@ -74,9 +83,11 @@ public class DatabaseManager {
         }
     }
 
+
     // Gestionarea clienților
     public void addCustomer(Customer customer) {
         customers.add(customer);
+        saveCustomers();
     }
 
     public Customer getCustomer(String username) {
@@ -100,7 +111,9 @@ public class DatabaseManager {
     // Gestionarea angajaților
     public void addEmployee(Employee employee) {
         employees.add(employee);
+        saveEmployees();
     }
+
 
     public List<Employee> getEmployees() {
         return employees;
@@ -157,6 +170,7 @@ public class DatabaseManager {
                     products.add(product);
                 }
             }
+            savePromotions();
             saveProducts();
         } else {
             System.out.println("Doar managerii pot adăuga promoții noi.");
@@ -166,11 +180,12 @@ public class DatabaseManager {
     public void removePromotion(Promotion promotion, Employee employee) {
         if (employee != null && employee.getRole().equals("manager")) {
             promotions.remove(promotion);
-            saveProducts();
+            savePromotions();
         } else {
             System.out.println("Doar managerii pot șterge promoții.");
         }
     }
+
     public double getDiscountForProduct(Product product) {
         for (Promotion promotion : promotions) {
             if (promotion.getProducts().contains(product)) {
@@ -185,12 +200,40 @@ public class DatabaseManager {
         return promotions;
     }
 
-    // Metode pentru salvarea și încărcarea datelor (simulare)
     private void saveOrders() {
-        // Salvarea comenzilor
+        try (FileWriter writer = new FileWriter(ORDERS_FILE)) {
+            gson.toJson(orders, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void saveProducts() {
-        // Salvarea produselor
+        try (FileWriter writer = new FileWriter(PRODUCTS_FILE)) {
+            gson.toJson(products, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void savePromotions() {
+        try (FileWriter writer = new FileWriter(PROMOTIONS_FILE)) {
+            gson.toJson(promotions, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void saveEmployees() {
+        try (FileWriter writer = new FileWriter(EMPLOYEES_FILE)) {
+            gson.toJson(employees, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void saveCustomers() {
+        try (FileWriter writer = new FileWriter(CUSTOMERS_FILE)) {
+            gson.toJson(customers, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

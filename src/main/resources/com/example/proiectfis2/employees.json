@@ -13,5 +13,10 @@
     "username": "junior",
     "password": "juniorpass",
     "role": "junior"
+  },
+  {
+    "username": "gabi",
+    "password": "gabi",
+    "role": "senior"
   }
 ]

@@ -68,16 +68,16 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        // Inițializare liste și butoane
-        // Exemplu de angajați pentru testare
+        // Initializare liste si butoane
+        // Exemplu de angajati pentru testare
         Employee manager = new Employee("manager", "managerpass", "manager");
         Employee senior = new Employee("senior", "seniorpass", "senior");
         Employee junior = new Employee("junior", "juniorpass", "junior");
-        databaseManager.addEmployee(manager);
-        databaseManager.addEmployee(senior);
-        databaseManager.addEmployee(junior);
+      //  databaseManager.addEmployee(manager);
+       // databaseManager.addEmployee(senior);
+       // databaseManager.addEmployee(junior);
 
-        // Inițializare ListView produse și comenzi
+        // Initializare ListView produse si comenzi
         productList.setCellFactory(param -> new ProductCell());
         cartList.setCellFactory(param -> new ProductCell());
         orderList.setCellFactory(param -> new OrderCell());
@@ -86,7 +86,7 @@ public class HelloController {
         updateOrderListView();
         updateCartListView();
 
-        // Dezactivarea butoanelor la început
+        // Dezactivarea butoanelor la inceput
         setButtonAccess(false, false, false, false, false, false);
     }
 
@@ -127,12 +127,12 @@ public class HelloController {
         // Autentificare client
         if (databaseManager.authenticateCustomer(username, password)) {
             currentCustomer = databaseManager.getCustomer(username);
-            System.out.println("Customer logged in: " + username);
+            System.out.println("Client logat: " + username);
             setButtonAccess(false, false, true, false, false, false);  // Customers can only place orders
         } else if (databaseManager.authenticateEmployee(username, password)) {
             // Autentificare angajat
             currentEmployee = databaseManager.getEmployee(username);
-            System.out.println("Logged in as: " + currentEmployee.getUsername());
+            System.out.println("Persoana logata: " + currentEmployee.getUsername());
             switch (currentEmployee.getRole()) {
                 case "manager":
                     setButtonAccess(true, true, true, true, true, true);
@@ -145,10 +145,11 @@ public class HelloController {
                     break;
             }
         } else {
-            System.out.println("Invalid login credentials");
+            System.out.println("Date invalide de logare");
             setButtonAccess(false, false, false, false, false, false);
         }
     }
+
 
     @FXML
     private void handleAddProduct(ActionEvent event) {
@@ -189,16 +190,17 @@ public class HelloController {
                 String description = resultDescription.get();
 
                 Product product = new Product(category.name(), category, price, description, 4);
-                databaseManager.addProduct(product, currentEmployee);
+                databaseManager.addProduct(product, currentEmployee); // This method saves the products list to JSON
                 updateProductListView();
                 System.out.println("Product added: " + product.getName());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid price format.");
             }
         } else {
-            System.out.println("You must log in as a senior employee to add products.");
+            System.out.println("Trebuie sa fiti angajat senior pentru a putea adauga noi produse.");
         }
     }
+
 
     @FXML
     private void handleAddPromotion(ActionEvent event) {
@@ -220,7 +222,7 @@ public class HelloController {
             updateProductListView();
             System.out.println("Promotion added to product: " + selectedProduct.getName());
         } else {
-            System.out.println("You must log in as a manager to add promotions.");
+            System.out.println("Trebuie sa fiti manager ca sa puteti adauga promotii noi");
         }
     }
 
@@ -243,7 +245,7 @@ public class HelloController {
             updateProductListView();
             System.out.println("Promotion removed: " + selectedPromotion.getName());
         } else {
-            System.out.println("You must log in as a manager to remove promotions.");
+            System.out.println("Trebuie sa fiti manager ca sa puteti sterge promotii");
         }
     }
 
@@ -251,7 +253,6 @@ public class HelloController {
     private void handleAddToCart(ActionEvent event) {
         Product selectedProduct = productList.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
-            // Check if the product has any promotion applied
             double discount = databaseManager.getDiscountForProduct(selectedProduct);
             Product productToAdd = new Product(
                     selectedProduct.getName(),
@@ -265,7 +266,7 @@ public class HelloController {
             updateCartListView();
             System.out.println("Product added to cart: " + productToAdd.getName());
         } else {
-            System.out.println("You must select a product to add to the cart.");
+            System.out.println("Selectati un produs pe care doriti sa il adaugati in cos");
         }
     }
 
@@ -277,7 +278,7 @@ public class HelloController {
             updateCartListView();
             System.out.println("Product removed from cart: " + selectedProduct.getName());
         } else {
-            System.out.println("You must select a product to remove from the cart.");
+            System.out.println("Selectati produsul pe care doriti sa l stergeti");
         }
     }
 
@@ -285,7 +286,7 @@ public class HelloController {
     private void handlePlaceOrder(ActionEvent event) {
         if (currentCustomer != null) {
             if (cart.isEmpty()) {
-                System.out.println("Your cart is empty. Add products to the cart before placing an order.");
+                System.out.println("Cosul dumneavoastra este gol. Adaugati produse inainte sa plasati o comanda.");
                 return;
             }
 
@@ -294,7 +295,7 @@ public class HelloController {
             for (Product product : order.getProducts()) {
                 totalPrice += product.getPrice();
                 if (product.getCategory() == Category.DESKTOP_PC || product.getCategory() == Category.LAPTOP_PC) {
-                    totalPrice += 100.0; // Taxă suplimentară pentru sisteme pre-asamblate
+                    totalPrice += 100.0; // Taxa suplimentara pentru sisteme pre-asamblate
                 }
             }
             System.out.println("Total price: " + totalPrice);
@@ -304,7 +305,7 @@ public class HelloController {
             updateCartListView();
             System.out.println("Order placed: " + order);
         } else {
-            System.out.println("You must log in as a customer to place an order.");
+            System.out.println("Va rugam sa va faceti conectati pe contul de client pentru a putea plasa o comanda!");
         }
     }
 
@@ -312,12 +313,11 @@ public class HelloController {
     private void handleOrderStatusChange(ActionEvent event) {
         Order selectedOrder = orderList.getSelectionModel().getSelectedItem();
         if (selectedOrder != null) {
-            // Exemplu simplu pentru schimbarea statusului unei comenzi
-            selectedOrder.setStatus("Completed");
+            selectedOrder.setStatus("Comanda pregatita de expediere");
             updateOrderListView();
             System.out.println("Order status updated: " + selectedOrder.getStatus());
         } else {
-            System.out.println("You must select an order to change its status.");
+            System.out.println("Selectati comanda careia doriti sa ii schimbati statusul");
         }
     }
 
@@ -357,7 +357,7 @@ public class HelloController {
             databaseManager.addEmployee(newEmployee);
             System.out.println("Employee added: " + newEmployee.getUsername());
         } else {
-            System.out.println("You must log in as a manager to add employees.");
+            System.out.println("Trebuie sa fiti manager ca sa puteti adauga noi angajati in sistem.");
         }
     }
 
@@ -376,7 +376,7 @@ public class HelloController {
             alert.setContentText(employeeList.toString());
             alert.showAndWait();
         } else {
-            System.out.println("You must log in as a manager to view employees.");
+            System.out.println("Doar managerii pot vedea lista de anagajatii din sistem.");
         }
     }
 
@@ -414,7 +414,7 @@ public class HelloController {
             orderList.getItems().add(serviceOrder);
             System.out.println("Service request added: " + description + " on " + date);
         } else {
-            System.out.println("You must log in as a customer to place a service request.");
+            System.out.println("Trebuie sa aveti cont de client pentru a putea trimite o cerere de service");
         }
     }
 }
