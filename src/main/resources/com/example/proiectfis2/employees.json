@@ -1,0 +1,17 @@
+[
+  {
+    "username": "manager",
+    "password": "managerpass",
+    "role": "manager"
+  },
+  {
+    "username": "senior",
+    "password": "seniorpass",
+    "role": "senior"
+  },
+  {
+    "username": "junior",
+    "password": "juniorpass",
+    "role": "junior"
+  }
+]

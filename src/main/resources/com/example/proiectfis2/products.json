@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Desktop PC",
+    "category": "DESKTOP_PC",
+    "price": 1200.0,
+    "description": "High-performance desktop PC",
+    "rating": 5
+  },
+  {
+    "name": "Laptop PC",
+    "category": "LAPTOP_PC",
+    "price": 1500.0,
+    "description": "Portable laptop PC",
+    "rating": 4
+  }
+]
