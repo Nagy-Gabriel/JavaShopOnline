@@ -1,15 +1,18 @@
 package com.example.proiectfis2;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.event.ActionEvent;
-import javafx.collections.FXCollections;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class HelloController {
-
     @FXML
     private ListView<Product> productList;
 
@@ -20,46 +23,16 @@ public class HelloController {
     private ListView<Order> orderList;
 
     @FXML
+    private ListView<ServiceRequest> serviceRequestList; // Add service request list
+
+    @FXML
     private TextField usernameField;
 
     @FXML
     private TextField passwordField;
 
     @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button addButton;
-
-    @FXML
-    private Button addPromoButton;
-
-    @FXML
-    private Button removePromoButton;
-
-    @FXML
-    private Button addToCartButton;
-
-    @FXML
-    private Button removeFromCartButton;
-
-    @FXML
-    private Button placeOrderButton;
-
-    @FXML
-    private Button changeStatusButton;
-
-    @FXML
-    private Button addEmployeeButton;
-
-    @FXML
-    private Button viewEmployeesButton;
-
-    @FXML
-    private TextArea serviceDescriptionArea;
-
-    @FXML
-    private TextField serviceDateField;
+    private Button loginButton, addButton, addPromoButton, removePromoButton, addToCartButton, removeFromCartButton, placeOrderButton, changeStatusButton, addEmployeeButton, viewEmployeesButton, serviceRequestButton, removeCompletedButton;
 
     private DatabaseManager databaseManager = new DatabaseManager();
     private Employee currentEmployee;
@@ -68,38 +41,20 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        // Initializare liste si butoane
-        // Exemplu de angajati pentru testare
-        Employee manager = new Employee("manager", "managerpass", "manager");
-        Employee senior = new Employee("senior", "seniorpass", "senior");
-        Employee junior = new Employee("junior", "juniorpass", "junior");
-      //  databaseManager.addEmployee(manager);
-       // databaseManager.addEmployee(senior);
-       // databaseManager.addEmployee(junior);
-
-        // Initializare ListView produse si comenzi
+        // Set cell factories for custom list view cells
         productList.setCellFactory(param -> new ProductCell());
-        cartList.setCellFactory(param -> new ProductCell());
         orderList.setCellFactory(param -> new OrderCell());
+        serviceRequestList.setCellFactory(param -> new ServiceRequestCell());
+        cartList.setCellFactory(param -> new ProductCell());
 
+        // Load initial data and update list views
         updateProductListView();
         updateOrderListView();
         updateCartListView();
+        updateServiceRequestListView();
 
-        // Dezactivarea butoanelor la inceput
-        setButtonAccess(false, false, false, false, false, false);
-    }
-
-    private void setButtonAccess(boolean productAccess, boolean promotionAccess, boolean orderAccess, boolean employeeAccess, boolean viewEmployeeAccess, boolean changeOrderStatusAccess) {
-        addButton.setDisable(!productAccess);
-        addPromoButton.setDisable(!promotionAccess);
-        removePromoButton.setDisable(!promotionAccess);
-        addToCartButton.setDisable(!orderAccess);
-        removeFromCartButton.setDisable(!orderAccess);
-        placeOrderButton.setDisable(!orderAccess);
-        changeStatusButton.setDisable(!changeOrderStatusAccess);
-        addEmployeeButton.setDisable(!employeeAccess);
-        viewEmployeesButton.setDisable(!viewEmployeeAccess);
+        // Set button access based on initial conditions
+        setButtonAccess(false, false, false, false, false, false, false, false, false, false);
     }
 
     private void updateProductListView() {
@@ -116,6 +71,40 @@ public class HelloController {
         cartList.setItems(FXCollections.observableArrayList(cart));
     }
 
+    private void updateServiceRequestListView() {
+        List<ServiceRequest> serviceRequests = databaseManager.getServiceRequests();
+        serviceRequestList.setItems(FXCollections.observableArrayList(serviceRequests));
+    }
+
+    private void setButtonAccess(boolean addProduct, boolean addPromo, boolean removePromo, boolean addToCart, boolean removeFromCart, boolean placeOrder, boolean changeStatus, boolean addEmployee, boolean viewEmployees, boolean removeCompleted) {
+        addButton.setVisible(addProduct);
+        addPromoButton.setVisible(addPromo);
+        removePromoButton.setVisible(removePromo);
+        addToCartButton.setVisible(addToCart);
+        removeFromCartButton.setVisible(removeFromCart);
+        placeOrderButton.setVisible(placeOrder);
+        changeStatusButton.setVisible(changeStatus);
+        addEmployeeButton.setVisible(addEmployee);
+        viewEmployeesButton.setVisible(viewEmployees);
+        serviceRequestButton.setVisible(true); // Always visible for customers
+        removeCompletedButton.setVisible(removeCompleted);
+
+        // Set ListView visibility
+        orderList.setVisible(addEmployee || changeStatus || removeCompleted);
+        serviceRequestList.setVisible(addEmployee || changeStatus || removeCompleted);
+    }
+
+    private void showAlert(Alert.AlertType type, String title, String headerText, String contentText) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+    private void setListViewVisibility(boolean isVisible) {
+        orderList.setVisible(isVisible);
+        serviceRequestList.setVisible(isVisible);
+    }
     @FXML
     private void handleLogin(ActionEvent event) {
         String username = usernameField.getText();
@@ -127,29 +116,28 @@ public class HelloController {
         // Autentificare client
         if (databaseManager.authenticateCustomer(username, password)) {
             currentCustomer = databaseManager.getCustomer(username);
-            System.out.println("Client logat: " + username);
-            setButtonAccess(false, false, true, false, false, false);  // Customers can only place orders
+            System.out.println("Customer logged in: " + username);
+            setButtonAccess(false, false, false, true, true, true, false, false, false, false);
         } else if (databaseManager.authenticateEmployee(username, password)) {
             // Autentificare angajat
             currentEmployee = databaseManager.getEmployee(username);
-            System.out.println("Persoana logata: " + currentEmployee.getUsername());
+            System.out.println("Logged in as: " + currentEmployee.getUsername());
             switch (currentEmployee.getRole()) {
                 case "manager":
-                    setButtonAccess(true, true, true, true, true, true);
+                    setButtonAccess(false, true, true, true, true, true, false, true, true, true);
                     break;
                 case "senior":
-                    setButtonAccess(true, false, true, false, false, true);
+                    setButtonAccess(true, false, false, true, true, true, true, false, false, true);
                     break;
                 case "junior":
-                    setButtonAccess(false, false, true, false, false, true);
+                    setButtonAccess(false, false, false, true, true, true, true, false, false, true);
                     break;
             }
         } else {
-            System.out.println("Date invalide de logare");
-            setButtonAccess(false, false, false, false, false, false);
+            System.out.println("Invalid login credentials");
+            setButtonAccess(false, false, false, false, false, false, false, false, false, false);
         }
     }
-
 
     @FXML
     private void handleAddProduct(ActionEvent event) {
@@ -160,7 +148,17 @@ public class HelloController {
             categoryDialog.setContentText("Category:");
             Optional<Category> resultCategory = categoryDialog.showAndWait();
             if (!resultCategory.isPresent()) {
-                System.out.println("Product category not selected.");
+                showAlert(Alert.AlertType.ERROR, "Add Product", "Product category not selected", "Please select a category.");
+                return;
+            }
+
+            TextInputDialog nameDialog = new TextInputDialog();
+            nameDialog.setTitle("Add Product");
+            nameDialog.setHeaderText("Enter product name");
+            nameDialog.setContentText("Name:");
+            Optional<String> resultName = nameDialog.showAndWait();
+            if (!resultName.isPresent()) {
+                showAlert(Alert.AlertType.ERROR, "Add Product", "Product name not provided", "Please enter a product name.");
                 return;
             }
 
@@ -170,7 +168,7 @@ public class HelloController {
             priceDialog.setContentText("Price:");
             Optional<String> resultPrice = priceDialog.showAndWait();
             if (!resultPrice.isPresent()) {
-                System.out.println("Product price not provided.");
+                showAlert(Alert.AlertType.ERROR, "Add Product", "Product price not provided", "Please enter a product price.");
                 return;
             }
 
@@ -180,27 +178,27 @@ public class HelloController {
             descriptionDialog.setContentText("Description:");
             Optional<String> resultDescription = descriptionDialog.showAndWait();
             if (!resultDescription.isPresent()) {
-                System.out.println("Product description not provided.");
+                showAlert(Alert.AlertType.ERROR, "Add Product", "Product description not provided", "Please enter a product description.");
                 return;
             }
 
             try {
                 Category category = resultCategory.get();
+                String name = resultName.get();
                 double price = Double.parseDouble(resultPrice.get());
                 String description = resultDescription.get();
 
-                Product product = new Product(category.name(), category, price, description, 4);
+                Product product = new Product(name, category, price, description, 4, category == Category.COMPONENTE_PRE);
                 databaseManager.addProduct(product, currentEmployee); // This method saves the products list to JSON
                 updateProductListView();
-                System.out.println("Product added: " + product.getName());
+                showAlert(Alert.AlertType.INFORMATION, "Add Product", "Product added", "Product added: " + product.getName());
             } catch (NumberFormatException e) {
-                System.out.println("Invalid price format.");
+                showAlert(Alert.AlertType.ERROR, "Add Product", "Invalid price format", "Please enter a valid price.");
             }
         } else {
-            System.out.println("Trebuie sa fiti angajat senior pentru a putea adauga noi produse.");
+            showAlert(Alert.AlertType.ERROR, "Add Product", "Permission denied", "You must log in as a senior employee to add products.");
         }
     }
-
 
     @FXML
     private void handleAddPromotion(ActionEvent event) {
@@ -212,17 +210,28 @@ public class HelloController {
             productDialog.setContentText("Product:");
             Optional<Product> resultProduct = productDialog.showAndWait();
             if (!resultProduct.isPresent()) {
-                System.out.println("Product not selected.");
+                showAlert(Alert.AlertType.ERROR, "Add Promotion", "Product not selected", "Please select a product.");
+                return;
+            }
+
+            TextInputDialog nameDialog = new TextInputDialog();
+            nameDialog.setTitle("Add Promotion");
+            nameDialog.setHeaderText("Enter promotion name");
+            nameDialog.setContentText("Name:");
+            Optional<String> resultName = nameDialog.showAndWait();
+            if (!resultName.isPresent()) {
+                showAlert(Alert.AlertType.ERROR, "Add Promotion", "Promotion name not provided", "Please enter a promotion name.");
                 return;
             }
 
             Product selectedProduct = resultProduct.get();
-            Promotion promotion = new Promotion("Special Promo", List.of(selectedProduct), 10.0);
+            String promotionName = resultName.get();
+            Promotion promotion = new Promotion(promotionName, List.of(selectedProduct), 10.0);
             databaseManager.addPromotion(promotion, currentEmployee);
             updateProductListView();
-            System.out.println("Promotion added to product: " + selectedProduct.getName());
+            showAlert(Alert.AlertType.INFORMATION, "Add Promotion", "Promotion added", "Promotion added to product: " + selectedProduct.getName());
         } else {
-            System.out.println("Trebuie sa fiti manager ca sa puteti adauga promotii noi");
+            showAlert(Alert.AlertType.ERROR, "Add Promotion", "Permission denied", "You must be a manager to add new promotions.");
         }
     }
 
@@ -234,18 +243,19 @@ public class HelloController {
             promoDialog.setTitle("Remove Promotion");
             promoDialog.setHeaderText("Select promotion to remove");
             promoDialog.setContentText("Promotion:");
+
             Optional<Promotion> resultPromotion = promoDialog.showAndWait();
             if (!resultPromotion.isPresent()) {
-                System.out.println("Promotion not selected.");
+                showAlert(Alert.AlertType.ERROR, "Remove Promotion", "Promotion not selected", "Please select a promotion.");
                 return;
             }
 
             Promotion selectedPromotion = resultPromotion.get();
             databaseManager.removePromotion(selectedPromotion, currentEmployee);
             updateProductListView();
-            System.out.println("Promotion removed: " + selectedPromotion.getName());
+            showAlert(Alert.AlertType.INFORMATION, "Remove Promotion", "Promotion removed", "Promotion removed: " + selectedPromotion.getName());
         } else {
-            System.out.println("Trebuie sa fiti manager ca sa puteti sterge promotii");
+            showAlert(Alert.AlertType.ERROR, "Remove Promotion", "Permission denied", "You must be a manager to remove promotions.");
         }
     }
 
@@ -254,19 +264,22 @@ public class HelloController {
         Product selectedProduct = productList.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
             double discount = databaseManager.getDiscountForProduct(selectedProduct);
+            double discountedPrice = selectedProduct.getPrice() * (1 - discount / 100);
+
             Product productToAdd = new Product(
                     selectedProduct.getName(),
                     selectedProduct.getCategory(),
-                    selectedProduct.getPrice() * (1 - discount / 100),
+                    discountedPrice,
                     selectedProduct.getDescription(),
-                    selectedProduct.getRating()
+                    selectedProduct.getRating(),
+                    selectedProduct.isPart()
             );
 
             cart.add(productToAdd);
             updateCartListView();
-            System.out.println("Product added to cart: " + productToAdd.getName());
+            showAlert(Alert.AlertType.INFORMATION, "Add to Cart", "Product added to cart", "Product added: " + productToAdd.getName());
         } else {
-            System.out.println("Selectati un produs pe care doriti sa il adaugati in cos");
+            showAlert(Alert.AlertType.ERROR, "Add to Cart", "No product selected", "Please select a product to add to cart.");
         }
     }
 
@@ -276,36 +289,42 @@ public class HelloController {
         if (selectedProduct != null) {
             cart.remove(selectedProduct);
             updateCartListView();
-            System.out.println("Product removed from cart: " + selectedProduct.getName());
+            showAlert(Alert.AlertType.INFORMATION, "Remove from Cart", "Product removed from cart", "Product removed: " + selectedProduct.getName());
         } else {
-            System.out.println("Selectati produsul pe care doriti sa l stergeti");
+            showAlert(Alert.AlertType.ERROR, "Remove from Cart", "No product selected", "Please select a product to remove from cart.");
         }
     }
 
     @FXML
     private void handlePlaceOrder(ActionEvent event) {
         if (currentCustomer != null) {
-            if (cart.isEmpty()) {
-                System.out.println("Cosul dumneavoastra este gol. Adaugati produse inainte sa plasati o comanda.");
-                return;
-            }
+            if (!cart.isEmpty()) {
+                double totalPrice = 0;
+                boolean hasPreAssembledParts = false;
 
-            Order order = new Order(currentCustomer, new ArrayList<>(cart), Type.CUMPARARE);
-            double totalPrice = 0.0;
-            for (Product product : order.getProducts()) {
-                totalPrice += product.getPrice();
-                if (product.getCategory() == Category.DESKTOP_PC || product.getCategory() == Category.LAPTOP_PC) {
-                    totalPrice += 100.0; // Taxa suplimentara pentru sisteme pre-asamblate
+                for (Product product : cart) {
+                    totalPrice += product.getPrice();
+                    if (product.getCategory() == Category.COMPONENTE_PRE) {
+                        hasPreAssembledParts = true;
+                    }
                 }
+
+                if (hasPreAssembledParts) {
+                    totalPrice += 100; // Adding extra charge for pre-assembled parts
+                }
+
+                List<Product> orderProducts = new ArrayList<>(cart);
+                cart.clear();
+                updateCartListView();
+                Order order = new Order(currentCustomer, orderProducts, "Pending");
+                databaseManager.placeOrder(order); // This method saves the orders list to JSON
+                updateOrderListView();
+                showAlert(Alert.AlertType.INFORMATION, "Place Order", "Order placed", "Order placed. Total price: " + totalPrice);
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Place Order", "Cart is empty", "Please add products to the cart before placing an order.");
             }
-            System.out.println("Total price: " + totalPrice);
-            databaseManager.placeOrder(order);
-            updateOrderListView();
-            cart.clear();
-            updateCartListView();
-            System.out.println("Order placed: " + order);
         } else {
-            System.out.println("Va rugam sa va faceti conectati pe contul de client pentru a putea plasa o comanda!");
+            showAlert(Alert.AlertType.ERROR, "Place Order", "Permission denied", "You must log in as a customer to place an order.");
         }
     }
 
@@ -313,39 +332,55 @@ public class HelloController {
     private void handleOrderStatusChange(ActionEvent event) {
         Order selectedOrder = orderList.getSelectionModel().getSelectedItem();
         if (selectedOrder != null) {
-            selectedOrder.setStatus("Comanda pregatita de expediere");
+            ChoiceDialog<String> statusDialog = new ChoiceDialog<>("Pending", "Pending", "Processing", "Completed", "Cancelled");
+            statusDialog.setTitle("Change Order Status");
+            statusDialog.setHeaderText("Select new status for the order");
+            statusDialog.setContentText("Status:");
+            Optional<String> resultStatus = statusDialog.showAndWait();
+            if (!resultStatus.isPresent()) {
+                showAlert(Alert.AlertType.ERROR, "Change Order Status", "Order status not selected", "Please select a new order status.");
+                return;
+            }
+
+            String newStatus = resultStatus.get();
+            selectedOrder.setStatus(newStatus);
             updateOrderListView();
-            System.out.println("Order status updated: " + selectedOrder.getStatus());
+            showAlert(Alert.AlertType.INFORMATION, "Change Order Status", "Order status changed", "Order status changed to: " + newStatus);
         } else {
-            System.out.println("Selectati comanda careia doriti sa ii schimbati statusul");
+            showAlert(Alert.AlertType.ERROR, "Change Order Status", "No order selected", "Please select an order to change its status.");
         }
     }
 
     @FXML
     private void handleAddEmployee(ActionEvent event) {
         if (currentEmployee != null && "manager".equals(currentEmployee.getRole())) {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Add Employee");
-            dialog.setHeaderText("Enter employee details");
-
-            dialog.setContentText("Username:");
-            Optional<String> resultUsername = dialog.showAndWait();
+            TextInputDialog usernameDialog = new TextInputDialog();
+            usernameDialog.setTitle("Add Employee");
+            usernameDialog.setHeaderText("Enter employee username");
+            usernameDialog.setContentText("Username:");
+            Optional<String> resultUsername = usernameDialog.showAndWait();
             if (!resultUsername.isPresent()) {
-                System.out.println("Employee username not provided.");
+                showAlert(Alert.AlertType.ERROR, "Add Employee", "Employee username not provided", "Please enter an employee username.");
                 return;
             }
 
-            dialog.setContentText("Password:");
-            Optional<String> resultPassword = dialog.showAndWait();
+            TextInputDialog passwordDialog = new TextInputDialog();
+            passwordDialog.setTitle("Add Employee");
+            passwordDialog.setHeaderText("Enter employee password");
+            passwordDialog.setContentText("Password:");
+            Optional<String> resultPassword = passwordDialog.showAndWait();
             if (!resultPassword.isPresent()) {
-                System.out.println("Employee password not provided.");
+                showAlert(Alert.AlertType.ERROR, "Add Employee", "Employee password not provided", "Please enter an employee password.");
                 return;
             }
 
-            dialog.setContentText("Role (junior/senior):");
-            Optional<String> resultRole = dialog.showAndWait();
+            ChoiceDialog<String> roleDialog = new ChoiceDialog<>("junior", "junior", "senior");
+            roleDialog.setTitle("Add Employee");
+            roleDialog.setHeaderText("Select employee role");
+            roleDialog.setContentText("Role:");
+            Optional<String> resultRole = roleDialog.showAndWait();
             if (!resultRole.isPresent()) {
-                System.out.println("Employee role not provided.");
+                showAlert(Alert.AlertType.ERROR, "Add Employee", "Employee role not selected", "Please select an employee role.");
                 return;
             }
 
@@ -353,11 +388,39 @@ public class HelloController {
             String password = resultPassword.get();
             String role = resultRole.get();
 
-            Employee newEmployee = new Employee(username, password, role);
-            databaseManager.addEmployee(newEmployee);
-            System.out.println("Employee added: " + newEmployee.getUsername());
+            Employee employee = new Employee(username, password, role);
+            databaseManager.addEmployee(employee); // This method saves the employees list to JSON
+            showAlert(Alert.AlertType.INFORMATION, "Add Employee", "Employee added", "Employee added: " + username);
         } else {
-            System.out.println("Trebuie sa fiti manager ca sa puteti adauga noi angajati in sistem.");
+            showAlert(Alert.AlertType.ERROR, "Add Employee", "Permission denied", "You must log in as a manager to add employees.");
+        }
+    }
+
+    @FXML
+    private void handleRemoveCompleted(ActionEvent event) {
+        if (currentEmployee != null) {
+            if ("manager".equals(currentEmployee.getRole()) || "senior".equals(currentEmployee.getRole()) || "junior".equals(currentEmployee.getRole())) {
+                // Retrieve the items in the orderList
+                ObservableList<Order> items = orderList.getItems();
+
+                // Remove completed and canceled orders
+                List<Order> completedOrCanceledOrders = items.stream()
+                        .filter(order -> order.getStatus().equals("Completed") || order.getStatus().equals("Cancelled"))
+                        .collect(Collectors.toList());
+                items.removeAll(completedOrCanceledOrders);
+
+                // Update the orderList view
+                orderList.setItems(items);
+
+                // Update orders in the database
+                databaseManager.updateOrders(items);
+
+                showAlert(Alert.AlertType.INFORMATION, "Remove Completed", "Completed or canceled orders removed", "Completed or canceled orders removed.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Remove Completed", "Permission denied", "Only managers, senior, or junior employees can remove completed or canceled orders.");
+            }
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Remove Completed", "Permission denied", "You must be logged in as a manager, senior, or junior employee to remove completed or canceled orders.");
         }
     }
 
@@ -365,18 +428,13 @@ public class HelloController {
     private void handleViewEmployees(ActionEvent event) {
         if (currentEmployee != null && "manager".equals(currentEmployee.getRole())) {
             List<Employee> employees = databaseManager.getEmployees();
-            StringBuilder employeeList = new StringBuilder();
+            StringBuilder employeeInfo = new StringBuilder("Employees:\n");
             for (Employee employee : employees) {
-                employeeList.append(employee.getUsername()).append(" - ").append(employee.getRole()).append("\n");
+                employeeInfo.append("Username: ").append(employee.getUsername()).append(", Role: ").append(employee.getRole()).append("\n");
             }
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("View Employees");
-            alert.setHeaderText("List of employees");
-            alert.setContentText(employeeList.toString());
-            alert.showAndWait();
+            showAlert(Alert.AlertType.INFORMATION, "View Employees", "Employee Information", employeeInfo.toString());
         } else {
-            System.out.println("Doar managerii pot vedea lista de anagajatii din sistem.");
+            showAlert(Alert.AlertType.ERROR, "View Employees", "Permission denied", "You must log in as a manager to view employees.");
         }
     }
 
@@ -389,7 +447,7 @@ public class HelloController {
             descriptionDialog.setContentText("Description:");
             Optional<String> resultDescription = descriptionDialog.showAndWait();
             if (!resultDescription.isPresent()) {
-                System.out.println("Service description not provided.");
+                showAlert(Alert.AlertType.ERROR, "Service Request", "Service description not provided", "Please enter a service description.");
                 return;
             }
 
@@ -399,22 +457,19 @@ public class HelloController {
             dateDialog.setContentText("Date:");
             Optional<String> resultDate = dateDialog.showAndWait();
             if (!resultDate.isPresent()) {
-                System.out.println("Service date not provided.");
+                showAlert(Alert.AlertType.ERROR, "Service Request", "Service date not provided", "Please enter a service date.");
                 return;
             }
 
             String description = resultDescription.get();
             String date = resultDate.get();
-            Order serviceOrder = new Order(currentCustomer, new ArrayList<>(), Type.SERVICE);
-            serviceOrder.setStatus("Pending");
-            Product serviceProduct = new Product("Service Request", Category.COMPONENTE, 0.0, description + " - Date: " + date, 0);
-            serviceOrder.getProducts().add(serviceProduct);
-            databaseManager.placeOrder(serviceOrder);
-            updateOrderListView();
-            orderList.getItems().add(serviceOrder);
-            System.out.println("Service request added: " + description + " on " + date);
+
+            ServiceRequest serviceRequest = new ServiceRequest(currentCustomer, description, date);
+            databaseManager.addServiceRequest(serviceRequest);
+            updateServiceRequestListView(); // Update the view
+            showAlert(Alert.AlertType.INFORMATION, "Service Request", "Service request submitted", "Service request submitted: " + description);
         } else {
-            System.out.println("Trebuie sa aveti cont de client pentru a putea trimite o cerere de service");
+            showAlert(Alert.AlertType.ERROR, "Service Request", "Permission denied", "You must log in as a customer to request service.");
         }
     }
 }

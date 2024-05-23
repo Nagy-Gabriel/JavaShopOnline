@@ -1,13 +1,28 @@
 [
   {
-    "name": "Special Promo",
+    "name": "Promotie UltraBoox",
     "products": [
       {
-        "name": "Desktop PC",
-        "category": "DESKTOP_PC",
-        "price": 1200.0,
-        "description": "High-performance desktop PC",
-        "rating": 5
+        "name": "UltraBook X",
+        "category": "LAPTOP_PC",
+        "price": 1800.0,
+        "description": "Ultrabook elegant și puternic.",
+        "rating": 4,
+        "isPart": false
+      }
+    ],
+    "discountPercent": 10.0
+  },
+  {
+    "name": "Imprimanta la reducere",
+    "products": [
+      {
+        "name": "Imprimantă Laser Pro",
+        "category": "IMPRIMANTE",
+        "price": 300.0,
+        "description": "Imprimantă laser profesională.",
+        "rating": 4,
+        "isPart": false
       }
     ],
     "discountPercent": 10.0

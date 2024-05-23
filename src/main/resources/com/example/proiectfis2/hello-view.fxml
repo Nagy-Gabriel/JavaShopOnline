@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.example.proiectfis2.HelloController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectfis2.HelloController" stylesheets="@styles.css">
   <TextField fx:id="usernameField" layoutX="14.0" layoutY="14.0" promptText="Username" />
-  <TextField fx:id="passwordField" layoutX="14.0" layoutY="44.0" promptText="Password" />
-  <Button fx:id="loginButton" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
-  <Button fx:id="addButton" layoutX="14.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleAddProduct" text="Add Product" />
-  <Button fx:id="addPromoButton" layoutX="14.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleAddPromotion" text="Add Promotion" />
-  <Button fx:id="removePromoButton" layoutX="14.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleRemovePromotion" text="Remove Promotion" />
-  <Button fx:id="addToCartButton" layoutX="14.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add to Cart" />
-  <Button fx:id="removeFromCartButton" layoutX="14.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleRemoveFromCart" text="Remove from Cart" />
-  <Button fx:id="placeOrderButton" layoutX="14.0" layoutY="254.0" mnemonicParsing="false" onAction="#handlePlaceOrder" text="Place Order" />
-  <Button fx:id="changeStatusButton" layoutX="14.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleOrderStatusChange" text="Change Order Status" />
-  <Button fx:id="addEmployeeButton" layoutX="14.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleAddEmployee" text="Add Employee" />
-  <Button fx:id="viewEmployeesButton" layoutX="14.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleViewEmployees" text="View Employees" />
-  <Button layoutX="14.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleServiceRequest" text="Request Service" />
-  <ListView fx:id="productList" layoutX="150.0" layoutY="14.0" prefHeight="200.0" prefWidth="600.0" />
-  <ListView fx:id="cartList" layoutX="150.0" layoutY="224.0" prefHeight="190.0" prefWidth="600.0" />
-  <ListView fx:id="orderList" layoutX="150.0" layoutY="424.0" prefHeight="200.0" prefWidth="600.0" />
+  <TextField fx:id="passwordField" layoutX="14.0" layoutY="54.0" promptText="Password" />
+  <Button fx:id="loginButton" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+
+  <!-- Spaced out buttons -->
+  <Button fx:id="addButton" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleAddProduct" text="Add Product" />
+  <Button fx:id="addPromoButton" layoutX="14.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleAddPromotion" text="Add Promotion" />
+  <Button fx:id="removePromoButton" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleRemovePromotion" text="Remove Promotion" />
+  <Button fx:id="addToCartButton" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add to Cart" />
+  <Button fx:id="removeFromCartButton" layoutX="14.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleRemoveFromCart" text="Remove from Cart" />
+  <Button fx:id="placeOrderButton" layoutX="14.0" layoutY="394.0" mnemonicParsing="false" onAction="#handlePlaceOrder" text="Place Order" />
+  <Button fx:id="changeStatusButton" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleOrderStatusChange" text="Change Order Status" />
+  <Button fx:id="addEmployeeButton" layoutX="14.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleAddEmployee" text="Add Employee" />
+  <Button fx:id="viewEmployeesButton" layoutX="14.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleViewEmployees" text="View Employees" />
+  <Button fx:id="serviceRequestButton" layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#handleServiceRequest" text="Request Service" />
+  <Button fx:id="removeCompletedButton" layoutX="14.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleRemoveCompleted" text="Remove Completed" />
+
+  <Label layoutX="230.0" layoutY="-5.0" text="Produse" />
+  <ListView fx:id="productList" layoutX="230.0" layoutY="20.0" prefHeight="800.0" prefWidth="500.0" />
+
+  <Label layoutX="900.0" layoutY="-5.0" text="Cos cumparaturi" />
+  <ListView fx:id="cartList" layoutX="900.0" layoutY="30.0" prefHeight="290.0" prefWidth="500.0" />
+
+  <Label layoutX="900.0" layoutY="326.0" text="Comenzi date" />
+  <ListView fx:id="orderList" layoutX="900.0" layoutY="350.0" prefHeight="300.0" prefWidth="500.0" />
+
+  <Label layoutX="900.0" layoutY="660.0" text="Cereri Service" />
+  <ListView fx:id="serviceRequestList" layoutX="900.0" layoutY="700.0" prefHeight="270.0" prefWidth="500.0" />
 </AnchorPane>

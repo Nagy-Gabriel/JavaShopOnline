@@ -1,1 +1,90 @@
-[{"name":"Desktop PC","category":"DESKTOP_PC","price":1200.0,"description":"High-performance desktop PC","rating":5},{"name":"Laptop PC","category":"LAPTOP_PC","price":1500.0,"description":"Portable laptop PC","rating":4}]
+[
+  {
+    "name": "Desktop Gaming",
+    "category": "DESKTOP_PC",
+    "price": 2200.0,
+    "description": "Desktop gaming de înaltă performanță cu RTX 3080.",
+    "rating": 5,
+    "isPart": false
+  },
+  {
+    "name": "UltraBook X",
+    "category": "LAPTOP_PC",
+    "price": 1800.0,
+    "description": "Ultrabook elegant și puternic.",
+    "rating": 4,
+    "isPart": false
+  },
+  {
+    "name": "Imprimantă Laser Pro",
+    "category": "IMPRIMANTE",
+    "price": 300.0,
+    "description": "Imprimantă laser profesională.",
+    "rating": 4,
+    "isPart": false
+  },
+  {
+    "name": "Mouse Gaming",
+    "category": "PERIFERICE",
+    "price": 50.0,
+    "description": "Mouse gaming de înaltă precizie.",
+    "rating": 5,
+    "isPart": false
+  },
+  {
+    "name": "CPU Quad Core",
+    "category": "COMPONENTE_PRE",
+    "price": 400.0,
+    "description": "CPU quad-core puternic pentru gaming intens.",
+    "rating": 5,
+    "isPart": true
+  },
+  {
+    "name": "Tastatură Mecanică",
+    "category": "PERIFERICE",
+    "price": 120.0,
+    "description": "Tastatură mecanică durabilă cu iluminare RGB.",
+    "rating": 4,
+    "isPart": false
+  },
+  {
+    "name": "Placă Video",
+    "category": "COMPONENTE_PRE",
+    "price": 1200.0,
+    "description": "RTX 3090, performanță supremă pentru gaming.",
+    "rating": 5,
+    "isPart": true
+  },
+  {
+    "name": "Desktop All-in-One",
+    "category": "DESKTOP_PC",
+    "price": 1500.0,
+    "description": "Desktop all-in-one compact și puternic.",
+    "rating": 4,
+    "isPart": false
+  },
+  {
+    "name": "Kit Stocare SSD",
+    "category": "COMPONENTE_PRE",
+    "price": 250.0,
+    "description": "Stocare SSD NVMe de 1TB pentru acces rapid la date.",
+    "rating": 5,
+    "isPart": true
+  },
+  {
+    "name": "Upgrade RAM",
+    "category": "COMPONENTE_PRE",
+    "price": 150.0,
+    "description": "16GB RAM DDR4 pentru performanță îmbunătățită.",
+    "rating": 4,
+    "isPart": true
+  },
+  {
+    "name": "Monitor Ultrawide",
+    "category": "PERIFERICE",
+    "price": 400.0,
+    "description": "Monitor ultrawide de 34 de inch cu rezoluție înaltă.",
+    "rating": 5,
+    "isPart": false
+  }
+]

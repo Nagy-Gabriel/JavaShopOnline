@@ -2,13 +2,13 @@
   {
     "username": "customer1",
     "password": "password1",
-    "name": "Customer Name 1",
-    "email": "customer1@example.com"
+    "name": "Gabi",
+    "email": "customer1@gmail.com"
   },
   {
     "username": "customer2",
     "password": "password2",
-    "name": "Customer Name 2",
-    "email": "customer2@example.com"
+    "name": "Alex",
+    "email": "customer2@gmail.com"
   }
 ]

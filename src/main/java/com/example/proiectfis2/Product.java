@@ -6,13 +6,15 @@ public class Product {
     private double price;
     private String description;
     private int rating;
+    private boolean isPart;
 
-    public Product(String name, Category category, double price, String description, int rating) {
+    public Product(String name, Category category, double price, String description, int rating, boolean isPart) {
         this.name = name;
         this.category = category;
         this.price = price;
         this.description = description;
         this.rating = rating;
+        this.isPart = isPart;
     }
 
     public String getName() {
@@ -35,9 +37,37 @@ public class Product {
         return rating;
     }
 
-    @Override
-    public String toString() {
-        return "Name: " + this.name + ", Price: " + this.price + ", Description: " + this.description + ", Rating: " + this.rating;
+    public boolean isPart() {
+        return isPart;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setPart(boolean part) {
+        isPart = part;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s\nPrice: %.2f\nDescription: %s\nRating: %d",
+                name, price, description, rating);
+    }
 }

@@ -30,12 +30,20 @@ class Promotion {
         return totalValue * (discountPercent / 100);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void setDiscountPercent(double discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
     @Override
     public String toString() {
-        return "Promotion{" +
-                "name='" + name + '\'' +
-                ", products=" + products +
-                ", discountPercent=" + discountPercent +
-                '}';
+        return name + " (Discount: " + discountPercent + "%, Products: " + products.size() + ")";
     }
 }

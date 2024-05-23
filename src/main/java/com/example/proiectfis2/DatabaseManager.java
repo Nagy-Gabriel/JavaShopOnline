@@ -3,14 +3,12 @@ package com.example.proiectfis2;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.InputStreamReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.IOException;
-
 
 public class DatabaseManager {
     private List<Customer> customers;
@@ -18,25 +16,33 @@ public class DatabaseManager {
     private List<Product> products;
     private List<Order> orders;
     private List<Promotion> promotions;
+    private List<ServiceRequest> serviceRequests; // Added service requests
+
     private static final String CUSTOMERS_FILE = "src/main/resources/com/example/proiectfis2/customers.json";
     private static final String EMPLOYEES_FILE = "src/main/resources/com/example/proiectfis2/employees.json";
     private static final String PRODUCTS_FILE = "src/main/resources/com/example/proiectfis2/products.json";
     private static final String ORDERS_FILE = "src/main/resources/com/example/proiectfis2/orders.json";
     private static final String PROMOTIONS_FILE = "src/main/resources/com/example/proiectfis2/promotions.json";
+    private static final String SERVICE_REQUESTS_FILE = "src/main/resources/com/example/proiectfis2/service_requests.json"; // Added service requests file
 
     private Gson gson = new Gson();
+
     public DatabaseManager() {
         this.customers = loadCustomers();
         this.employees = loadEmployees();
         this.products = loadProducts();
         this.orders = loadOrders();
         this.promotions = loadPromotions();
+        this.serviceRequests = loadServiceRequests(); // Load service requests
+        associatePromotionsWithProducts();
     }
+
+    // Load methods...
 
     private List<Customer> loadCustomers() {
         try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/customers.json"))) {
             Type customerListType = new TypeToken<ArrayList<Customer>>(){}.getType();
-            return new Gson().fromJson(reader, customerListType);
+            return gson.fromJson(reader, customerListType);
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -46,7 +52,7 @@ public class DatabaseManager {
     private List<Employee> loadEmployees() {
         try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/employees.json"))) {
             Type employeeListType = new TypeToken<ArrayList<Employee>>(){}.getType();
-            return new Gson().fromJson(reader, employeeListType);
+            return gson.fromJson(reader, employeeListType);
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -56,7 +62,7 @@ public class DatabaseManager {
     private List<Product> loadProducts() {
         try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/products.json"))) {
             Type productListType = new TypeToken<ArrayList<Product>>(){}.getType();
-            return new Gson().fromJson(reader, productListType);
+            return gson.fromJson(reader, productListType);
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -66,7 +72,7 @@ public class DatabaseManager {
     private List<Order> loadOrders() {
         try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/orders.json"))) {
             Type orderListType = new TypeToken<ArrayList<Order>>(){}.getType();
-            return new Gson().fromJson(reader, orderListType);
+            return gson.fromJson(reader, orderListType);
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
@@ -75,16 +81,76 @@ public class DatabaseManager {
 
     private List<Promotion> loadPromotions() {
         try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/promotions.json"))) {
-            Type promotionListType = new TypeToken<ArrayList<Promotion>>(){}.getType();
-            return new Gson().fromJson(reader, promotionListType);
+            Type promotionListType = new TypeToken<ArrayList<Promotion>>() {}.getType();
+            return gson.fromJson(reader, promotionListType);
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
         }
     }
 
+    private List<ServiceRequest> loadServiceRequests() {
+        try (InputStreamReader reader = new InputStreamReader(getClass().getResourceAsStream("/com/example/proiectfis2/service_requests.json"))) {
+            Type serviceRequestListType = new TypeToken<ArrayList<ServiceRequest>>() {}.getType();
+            return gson.fromJson(reader, serviceRequestListType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
 
-    // Gestionarea clienților
+    // Save methods...
+
+    private void saveCustomers() {
+        try (FileWriter writer = new FileWriter(CUSTOMERS_FILE)) {
+            gson.toJson(customers, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveEmployees() {
+        try (FileWriter writer = new FileWriter(EMPLOYEES_FILE)) {
+            gson.toJson(employees, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveProducts() {
+        try (FileWriter writer = new FileWriter(PRODUCTS_FILE)) {
+            gson.toJson(products, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveOrders() {
+        try (FileWriter writer = new FileWriter(ORDERS_FILE)) {
+            gson.toJson(orders, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void savePromotions() {
+        try (FileWriter writer = new FileWriter(PROMOTIONS_FILE)) {
+            gson.toJson(promotions, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveServiceRequests() {
+        try (FileWriter writer = new FileWriter(SERVICE_REQUESTS_FILE)) {
+            gson.toJson(serviceRequests, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Other methods...
+
     public void addCustomer(Customer customer) {
         customers.add(customer);
         saveCustomers();
@@ -108,12 +174,10 @@ public class DatabaseManager {
         return false;
     }
 
-    // Gestionarea angajaților
     public void addEmployee(Employee employee) {
         employees.add(employee);
         saveEmployees();
     }
-
 
     public List<Employee> getEmployees() {
         return employees;
@@ -137,7 +201,6 @@ public class DatabaseManager {
         return null;
     }
 
-    // Gestionarea produselor
     public void addProduct(Product product, Employee employee) {
         if (employee != null && employee.getRole().equals("senior")) {
             products.add(product);
@@ -151,7 +214,6 @@ public class DatabaseManager {
         return products;
     }
 
-    // Gestionarea comenzilor
     public void placeOrder(Order order) {
         orders.add(order);
         saveOrders();
@@ -161,7 +223,6 @@ public class DatabaseManager {
         return orders;
     }
 
-    // Gestionarea promotiilor
     public void addPromotion(Promotion promotion, Employee employee) {
         if (employee != null && employee.getRole().equals("manager")) {
             promotions.add(promotion);
@@ -194,46 +255,38 @@ public class DatabaseManager {
         }
         return 0;
     }
-
-
+    public void updateOrders(List<Order> orders) {
+        this.orders = orders;
+        saveOrders();
+    }
     public List<Promotion> getPromotions() {
         return promotions;
     }
 
-    private void saveOrders() {
-        try (FileWriter writer = new FileWriter(ORDERS_FILE)) {
-            gson.toJson(orders, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void addServiceRequest(ServiceRequest serviceRequest) {
+        serviceRequests.add(serviceRequest);
+        saveServiceRequests();
     }
 
-    private void saveProducts() {
-        try (FileWriter writer = new FileWriter(PRODUCTS_FILE)) {
-            gson.toJson(products, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public List<ServiceRequest> getServiceRequests() {
+        return serviceRequests;
     }
-    private void savePromotions() {
-        try (FileWriter writer = new FileWriter(PROMOTIONS_FILE)) {
-            gson.toJson(promotions, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    public void updateServiceRequest(ServiceRequest serviceRequest) {
+        saveServiceRequests();
     }
-    private void saveEmployees() {
-        try (FileWriter writer = new FileWriter(EMPLOYEES_FILE)) {
-            gson.toJson(employees, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void saveCustomers() {
-        try (FileWriter writer = new FileWriter(CUSTOMERS_FILE)) {
-            gson.toJson(customers, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void associatePromotionsWithProducts() {
+        for (Promotion promotion : promotions) {
+            List<Product> updatedProducts = new ArrayList<>();
+            for (Product promotionProduct : promotion.getProducts()) {
+                for (Product product : products) {
+                    if (product.getName().equals(promotionProduct.getName())) {
+                        updatedProducts.add(product);
+                        break;
+                    }
+                }
+            }
+            promotion.setProducts(updatedProducts);
         }
     }
 }

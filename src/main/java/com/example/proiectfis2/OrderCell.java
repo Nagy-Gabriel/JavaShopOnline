@@ -11,6 +11,10 @@ public class OrderCell extends ListCell<Order> {
     private Label statusLabel = new Label();
 
     public OrderCell() {
+        customerLabel.getStyleClass().add("name-label");
+        productsLabel.getStyleClass().add("description-label");
+        statusLabel.getStyleClass().add("status-label");
+
         vbox.getChildren().addAll(customerLabel, productsLabel, statusLabel);
         setGraphic(vbox);
     }

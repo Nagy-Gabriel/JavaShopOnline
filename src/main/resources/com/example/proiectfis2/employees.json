@@ -1,22 +1,22 @@
 [
   {
     "username": "manager",
-    "password": "managerpass",
+    "password": "manager",
     "role": "manager"
   },
   {
-    "username": "senior",
-    "password": "seniorpass",
-    "role": "senior"
+    "username": "junior",
+    "password": "junior",
+    "role": "junior"
   },
   {
-    "username": "junior",
-    "password": "juniorpass",
-    "role": "junior"
+    "username": "senior",
+    "password": "senior",
+    "role": "senior"
   },
   {
     "username": "gabi",
     "password": "gabi",
-    "role": "senior"
+    "role": "manager"
   }
 ]

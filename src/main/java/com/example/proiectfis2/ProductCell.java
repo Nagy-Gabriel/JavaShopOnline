@@ -12,6 +12,11 @@ public class ProductCell extends ListCell<Product> {
     private Label ratingLabel = new Label();
 
     public ProductCell() {
+        nameLabel.getStyleClass().add("name-label");
+        priceLabel.getStyleClass().add("price-label");
+        descriptionLabel.getStyleClass().add("description-label");
+        ratingLabel.getStyleClass().add("rating-label");
+
         vbox.getChildren().addAll(nameLabel, priceLabel, descriptionLabel, ratingLabel);
         setGraphic(vbox);
     }
