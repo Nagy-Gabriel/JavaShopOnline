@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6ebf0e5-8475-4094-9317-50fa78461c1b" name="Changes" comment="Salvare date in fisier">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/DatabaseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/OrderCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/OrderCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/ProductCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/ProductCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Promotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/customers.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/customers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/employees.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/employees.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/orders.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/orders.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/products.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/promotions.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/promotions.json" afterDir="false" />
-    </list>
+    <list default="true" id="b6ebf0e5-8475-4094-9317-50fa78461c1b" name="Changes" comment="Modificari finale ale codului" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +95,7 @@
       <workItem from="1716273794343" duration="3358000" />
       <workItem from="1716373662250" duration="223000" />
       <workItem from="1716384859055" duration="42000" />
-      <workItem from="1716463601954" duration="20432000" />
+      <workItem from="1716463601954" duration="20490000" />
     </task>
     <task id="LOCAL-00001" summary="Adaugare noi functionalitati">
       <option name="closed" value="true" />
@@ -149,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716277122047</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Modificari finale ale codului">
+      <option name="closed" value="true" />
+      <created>1716486978130</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716486978130</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,7 +146,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adaugare noi functionalitati" />
     <MESSAGE value="Salvare date in fisier" />
-    <option name="LAST_COMMIT_MESSAGE" value="Salvare date in fisier" />
+    <MESSAGE value="Modificari finale ale codului" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modificari finale ale codului" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
