@@ -1,0 +1,132 @@
+/* General Styles */
+.root {
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 20;
+}
+
+/* TextField Styles */
+.text-field {
+    -fx-prompt-text-fill: #aaa;
+    -fx-background-color: #fff;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 8 10;
+    -fx-font-size: 12px;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-prompt-text-fill: transparent;
+}
+
+/* Button Styles */
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 5, 0, 0, 1);
+    -fx-border-color: #2980b9;
+    -fx-border-width: 2;
+    -fx-margin: 5 0;  /* Add margin between buttons */
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+    -fx-border-color: #1f6f93;
+}
+
+.button:pressed {
+    -fx-background-color: #1f6f93;
+    -fx-border-color: #145a75;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.3), 3, 0.0, 0, 2);
+}
+
+/* Label Styles */
+.label {
+    -fx-text-fill: #333;
+    -fx-font-size: 16px;
+    -fx-padding: 5 0;
+    -fx-font-weight: bold;
+}
+
+/* ListView Styles */
+.list-view {
+    -fx-background-color: #fff;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5;
+}
+
+.list-view .list-cell {
+    -fx-padding: 10;
+    -fx-background-color: #fff;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #e6e6e6;
+    -fx-font-size: 14px;
+}
+
+.list-view .list-cell:filled:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.list-view .list-cell:filled:focused {
+    -fx-border-color: #3498db;
+}
+
+/* Specific text styles for items */
+.list-view .list-cell .name-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.list-view .list-cell .price-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #e74c3c;
+}
+
+.list-view .list-cell .description-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.list-view .list-cell .rating-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #f39c12;
+}
+
+/* Highlight selected item */
+.list-view .list-cell:selected, .list-view .list-cell:filled:selected:focused {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.list-view .list-cell:selected .name-label,
+.list-view .list-cell:filled:selected:focused .name-label,
+.list-view .list-cell:selected .price-label,
+.list-view .list-cell:filled:selected:focused .price-label,
+.list-view .list-cell:selected .description-label,
+.list-view .list-cell:filled:selected:focused .description-label,
+.list-view .list-cell:selected .rating-label,
+.list-view .list-cell:filled:selected:focused .rating-label {
+    -fx-text-fill: white;
+}
+
+/* ScrollBar Styles */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #c4c4c4;
+    -fx-background-insets: 0;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: #e6e6e6;
+}
