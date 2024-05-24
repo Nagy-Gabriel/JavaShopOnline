@@ -86,5 +86,21 @@
     "description": "Monitor ultrawide de 34 de inch cu rezoluție înaltă.",
     "rating": 5,
     "isPart": false
+  },
+  {
+    "name": "Test produs",
+    "category": "DESKTOP_PC",
+    "price": 1000.0,
+    "description": "Test descriere",
+    "rating": 5,
+    "isPart": false
+  },
+  {
+    "name": "Test produs",
+    "category": "DESKTOP_PC",
+    "price": 1000.0,
+    "description": "Test descriere",
+    "rating": 5,
+    "isPart": false
   }
 ]

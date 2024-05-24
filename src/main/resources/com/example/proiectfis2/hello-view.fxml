@@ -12,17 +12,17 @@
   <Button fx:id="loginButton" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
 
   <!-- Spaced out buttons -->
-  <Button fx:id="addButton" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleAddProduct" text="Add Product" />
-  <Button fx:id="addPromoButton" layoutX="14.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleAddPromotion" text="Add Promotion" />
-  <Button fx:id="removePromoButton" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleRemovePromotion" text="Remove Promotion" />
-  <Button fx:id="addToCartButton" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add to Cart" />
-  <Button fx:id="removeFromCartButton" layoutX="14.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleRemoveFromCart" text="Remove from Cart" />
-  <Button fx:id="placeOrderButton" layoutX="14.0" layoutY="394.0" mnemonicParsing="false" onAction="#handlePlaceOrder" text="Place Order" />
-  <Button fx:id="changeStatusButton" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleOrderStatusChange" text="Change Order Status" />
-  <Button fx:id="addEmployeeButton" layoutX="14.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleAddEmployee" text="Add Employee" />
-  <Button fx:id="viewEmployeesButton" layoutX="14.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleViewEmployees" text="View Employees" />
-  <Button fx:id="serviceRequestButton" layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#handleServiceRequest" text="Request Service" />
-  <Button fx:id="removeCompletedButton" layoutX="14.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleRemoveCompleted" text="Remove Completed" />
+  <Button fx:id="addButton" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleAddProduct" text="Adauga Produs" />
+  <Button fx:id="addPromoButton" layoutX="14.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleAddPromotion" text="Adauga Promotii" />
+  <Button fx:id="removePromoButton" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleRemovePromotion" text="Stergere Promotii" />
+  <Button fx:id="addToCartButton" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Adauga In Cos" />
+  <Button fx:id="removeFromCartButton" layoutX="14.0" layoutY="344.0" mnemonicParsing="false" onAction="#handleRemoveFromCart" text="Elimina Din Cos" />
+  <Button fx:id="placeOrderButton" layoutX="14.0" layoutY="394.0" mnemonicParsing="false" onAction="#handlePlaceOrder" text="Plasare Comanda" />
+  <Button fx:id="changeStatusButton" layoutX="14.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleOrderStatusChange" text="Schimba Status Comanda" />
+  <Button fx:id="addEmployeeButton" layoutX="14.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleAddEmployee" text="Adaugare Angajat" />
+  <Button fx:id="viewEmployeesButton" layoutX="14.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleViewEmployees" text="Vizualizare Angajati" />
+  <Button fx:id="serviceRequestButton" layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#handleServiceRequest" text="Cerere Service" />
+  <Button fx:id="removeCompletedButton" layoutX="14.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleRemoveCompleted" text="Stergere Comenzi" />
 
   <Label layoutX="230.0" layoutY="-5.0" text="Produse" />
   <ListView fx:id="productList" layoutX="230.0" layoutY="20.0" prefHeight="800.0" prefWidth="500.0" />

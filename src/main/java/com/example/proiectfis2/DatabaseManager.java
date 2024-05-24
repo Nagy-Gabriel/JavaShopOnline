@@ -99,7 +99,6 @@ public class DatabaseManager {
         }
     }
 
-    // Save methods...
 
     private void saveCustomers() {
         try (FileWriter writer = new FileWriter(CUSTOMERS_FILE)) {
@@ -149,7 +148,6 @@ public class DatabaseManager {
         }
     }
 
-    // Other methods...
 
     public void addCustomer(Customer customer) {
         customers.add(customer);
@@ -215,6 +213,11 @@ public class DatabaseManager {
     }
 
     public void placeOrder(Order order) {
+        if (order.getCustomer() == null || order.getProducts() == null || order.getProducts().isEmpty()) {
+            System.out.println("Nu se pot plasa comenzi daca nu esti logat sau daca nu ati adaugat produse in cos.");
+
+            return;
+        }
         orders.add(order);
         saveOrders();
     }

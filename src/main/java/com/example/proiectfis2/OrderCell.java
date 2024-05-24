@@ -27,12 +27,12 @@ public class OrderCell extends ListCell<Order> {
             setText(null);
             setGraphic(null);
         } else {
-            customerLabel.setText("Customer: " + order.getCustomer().getUsername());
-            StringBuilder productsStringBuilder = new StringBuilder("Products:\n");
+            customerLabel.setText("Client: " + order.getCustomer().getUsername());
+            StringBuilder productsStringBuilder = new StringBuilder("Produse:\n");
             for (Product product : order.getProducts()) {
                 productsStringBuilder.append(" - ").append(product.getName())
-                        .append(" (Price: ").append(product.getPrice())
-                        .append(", Description: ").append(product.getDescription()).append(")\n");
+                        .append(" (Preet: ").append(product.getPrice())
+                        .append(", Descriere: ").append(product.getDescription()).append(")\n");
             }
             productsLabel.setText(productsStringBuilder.toString());
             statusLabel.setText("Status: " + order.getStatus());

@@ -27,9 +27,9 @@ public class ServiceRequestCell extends ListCell<ServiceRequest> {
             setText(null);
             setGraphic(null);
         } else {
-            customerLabel.setText("Customer: " + serviceRequest.getCustomer().getUsername());
-            descriptionLabel.setText("Description: " + serviceRequest.getDescription());
-            dateLabel.setText("Date: " + serviceRequest.getDate());
+            customerLabel.setText("Client: " + serviceRequest.getCustomer().getUsername());
+            descriptionLabel.setText("Desciere: " + serviceRequest.getDescription());
+            dateLabel.setText("Data: " + serviceRequest.getDate());
             setGraphic(vbox);
         }
     }

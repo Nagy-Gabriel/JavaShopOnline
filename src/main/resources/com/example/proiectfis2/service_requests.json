@@ -1,1 +1,79 @@
-[{"customer":{"username":"customer1","password":"password1","name":"Customer One","email":"customer1@example.com"},"description":"PC not turning on.","date":"2024-06-01","status":"Pending"},{"customer":{"username":"customer1","password":"password1","name":"Customer One","email":"customer1@example.com"},"description":"am neovie urgenta","date":"10 martie 2025","status":"Pending"},{"customer":{"username":"customer1","password":"password1","name":"Customer One","email":"customer1@example.com"},"description":"Am nevoie urgenta","date":"23 10 2024","status":"Pending"},{"customer":{"username":"customer1","password":"password1","name":"Gabi","email":"customer1@example.com"},"description":"My pc is turning off","date":"23/05/2024","status":"Pending"},{"customer":{"username":"customer1","password":"password1","name":"Gabi","email":"customer1@example.com"},"description":"das","date":"d","status":"Pending"}]
+[
+  {
+    "customer": {
+      "username": "customer1",
+      "password": "password1",
+      "name": "Customer One",
+      "email": "customer1@example.com"
+    },
+    "description": "PC not turning on.",
+    "date": "2024-06-01",
+    "status": "Pending"
+  },
+  {
+    "customer": {
+      "username": "customer1",
+      "password": "password1",
+      "name": "Customer One",
+      "email": "customer1@example.com"
+    },
+    "description": "am neovie urgenta",
+    "date": "10 martie 2025",
+    "status": "Pending"
+  },
+  {
+    "customer": {
+      "username": "customer1",
+      "password": "password1",
+      "name": "Customer One",
+      "email": "customer1@example.com"
+    },
+    "description": "Am nevoie urgenta",
+    "date": "23 10 2024",
+    "status": "Pending"
+  },
+  {
+    "customer": {
+      "username": "customer1",
+      "password": "password1",
+      "name": "Gabi",
+      "email": "customer1@example.com"
+    },
+    "description": "My pc is turning off",
+    "date": "23/05/2024",
+    "status": "Pending"
+  },
+  {
+    "customer": {
+      "username": "customer1",
+      "password": "password1",
+      "name": "Gabi",
+      "email": "customer1@example.com"
+    },
+    "description": "das",
+    "date": "d",
+    "status": "Pending"
+  },
+  {
+    "customer": {
+      "username": "TestCustomer",
+      "password": "password123",
+      "name": "Test Cus",
+      "email": "Test@example.com"
+    },
+    "description": "Test Service Request",
+    "date": "2024-05-24",
+    "status": "Pending"
+  },
+  {
+    "customer": {
+      "username": "TestCustomer",
+      "password": "password123",
+      "name": "Test Cus",
+      "email": "Test@example.com"
+    },
+    "description": "Test Service Request",
+    "date": "2024-05-24",
+    "status": "Pending"
+  }
+]

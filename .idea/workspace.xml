@@ -4,35 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6ebf0e5-8475-4094-9317-50fa78461c1b" name="Changes" comment="Modificari finale ale codului" />
+    <list default="true" id="23731e2c-a6b8-4dca-bd1f-3a1e1f4f7b75" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/OrderCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/OrderCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/ProductCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/ProductCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/Promotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/ServiceRequestCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proiectfis2/ServiceRequestCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/orders.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/orders.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/products.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/products.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/promotions.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/promotions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/service_requests.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/proiectfis2/service_requests.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Nagy-Gabriel"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="f6d6e018-eb05-4e01-9eb5-23843ba600d9" />
-        <option name="url" value="https://github.com/Nagy-Gabriel/ProiectFis2.git" />
-      </UrlAndAccount>
-    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -45,35 +42,51 @@
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2gbjZc0P2RatHkMHro2X5OGzzqi" />
+  <component name="ProjectId" id="2gsd8m0kh6qHwccw6KeFbdZi4QL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.HelloApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/nagyg/IdeaProjects/ProiectFis2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestNagyGabriel and 1 more.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestNagyGabriel.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Test_NagyGabriel.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\nagyg\IdeaProjects\ProiectFis2\src\main\resources\com\example\proiectfis2" />
-    </key>
+}</component>
+  <component name="RunManager">
+    <configuration name="TestNagyGabriel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ProiectFis2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.proiectfis2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.proiectfis2" />
+      <option name="MAIN_CLASS_NAME" value="com.example.proiectfis2.TestNagyGabriel" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestNagyGabriel" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -85,78 +98,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b6ebf0e5-8475-4094-9317-50fa78461c1b" name="Changes" comment="" />
-      <created>1715973228869</created>
+      <changelist id="23731e2c-a6b8-4dca-bd1f-3a1e1f4f7b75" name="Changes" comment="" />
+      <created>1716490063219</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1715973228869</updated>
-      <workItem from="1715973231501" duration="3804000" />
-      <workItem from="1716224843354" duration="7225000" />
-      <workItem from="1716273794343" duration="3358000" />
-      <workItem from="1716373662250" duration="223000" />
-      <workItem from="1716384859055" duration="42000" />
-      <workItem from="1716463601954" duration="20490000" />
+      <updated>1716490063219</updated>
+      <workItem from="1716490065501" duration="3323000" />
+      <workItem from="1716564360696" duration="6439000" />
     </task>
-    <task id="LOCAL-00001" summary="Adaugare noi functionalitati">
-      <option name="closed" value="true" />
-      <created>1716274575014</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1716274575014</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Adaugare noi functionalitati">
-      <option name="closed" value="true" />
-      <created>1716274606070</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1716274606070</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Adaugare noi functionalitati">
-      <option name="closed" value="true" />
-      <created>1716275308363</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1716275308363</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Salvare date in fisier">
-      <option name="closed" value="true" />
-      <created>1716277122047</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1716277122047</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Modificari finale ale codului">
-      <option name="closed" value="true" />
-      <created>1716486978130</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1716486978130</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adaugare noi functionalitati" />
-    <MESSAGE value="Salvare date in fisier" />
-    <MESSAGE value="Modificari finale ale codului" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modificari finale ale codului" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

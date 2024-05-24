@@ -44,6 +44,6 @@ class Promotion {
 
     @Override
     public String toString() {
-        return name + " (Discount: " + discountPercent + "%, Products: " + products.size() + ")";
+        return name + " (Discount: " + discountPercent + "%, Produse: " + products.size() + ")";
     }
 }

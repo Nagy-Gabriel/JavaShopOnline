@@ -67,7 +67,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nPrice: %.2f\nDescription: %s\nRating: %d",
+        return String.format("Nume: %s\nPret: %.2f\nDescriere: %s\nRating: %d",
                 name, price, description, rating);
     }
 }

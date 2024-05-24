@@ -29,9 +29,9 @@ public class ProductCell extends ListCell<Product> {
             setText(null);
             setGraphic(null);
         } else {
-            nameLabel.setText("Name: " + product.getName());
-            priceLabel.setText("Price: " + product.getPrice());
-            descriptionLabel.setText("Description: " + product.getDescription());
+            nameLabel.setText("Nume: " + product.getName());
+            priceLabel.setText("Pret: " + product.getPrice());
+            descriptionLabel.setText("Descriere: " + product.getDescription());
             ratingLabel.setText("Rating: " + product.getRating());
             setGraphic(vbox);
         }
